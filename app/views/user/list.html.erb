@@ -1,0 +1,13 @@
+<h1>ユーザー一覧</h1>
+
+<% @users.each do |user| %>
+<dl>
+    <dt><%= user.name %></dt>
+    <dd>
+        <ul>
+            <li>性別: <%= user.sex %></li>
+            <li>誕生日: <%= user.birthday %></li>
+        </ul>
+    </dd>
+</dl>
+<% end %>
