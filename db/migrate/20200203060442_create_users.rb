@@ -4,7 +4,6 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :name
       t.integer :sex
       t.date :birthday
-      t.string :image_path
 
       t.timestamps
     end
