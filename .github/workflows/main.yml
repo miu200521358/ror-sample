@@ -13,6 +13,7 @@ jobs:
     - name: ssh-keyscan
       run: |
         mkdir ~/.ssh/
+        chmod 700 ~/.ssh
         ssh-keyscan -t rsa github.com 2>&1 >> ~/.ssh/known_hosts
     - name: Mirroring Repository
       uses: pixta-dev/repository-mirroring-action@v1
