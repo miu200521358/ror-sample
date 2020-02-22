@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # ミラー先リポジトリ名
-      mirror-repository-name: ror-sample-mirror
+      MIRROR_REPOSITORY_NAME: ror-sample-mirror
       # ミラー先のリポジトリSSHパス
-      mirror-ripository:  git@github.com:miu200521358/ror-sample-mirror.git
+      MIRROR_RIPOSITORY:  git@github.com:miu200521358/ror-sample-mirror.git
     steps:
     - uses: actions/checkout@v2
     - name: set-ssh
@@ -31,7 +31,7 @@ jobs:
         # ミラー用ディレクトリに移動
         cd ~/mirror
         # ミラー用リポジトリをclone
-        git clone ${{ env.mirror-repository }}
+        git clone $MIRROR_RIPOSITORY
         # ファイル存在確認
         ls -l ./   
     - name: export
@@ -45,11 +45,11 @@ jobs:
     - name: copy
       run: |
         # オリジナルをミラーにコピーする
-        cp -r ~/original ~/mirror/${{ env.mirror-repository-name }}
+        cp -r ~/original ~/mirror/$MIRROR_REPOSITORY_NAME
     - name: diff
       run: |
         # ミラー用リポジトリに移動
-        cd ~/mirror/${{ env.mirror-repository-name }}
+        cd ~/mirror/$MIRROR_REPOSITORY_NAME
         # 差分表示
         git diff
         
