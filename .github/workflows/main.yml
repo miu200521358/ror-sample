@@ -14,8 +14,6 @@ jobs:
       run: ls -la /dev/tty
     - name: Mirroring Repository
       uses: pixta-dev/repository-mirroring-action@v1
-      env:
-        INPUT_SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       with:
         # SSH private key for ssh connection to the target repository
         ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
