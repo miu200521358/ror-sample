@@ -37,7 +37,7 @@ jobs:
         # ファイル存在確認
         ls -l ~/nowgit.zip
         # zipを展開する(既存上書き)
-        unzip -o ~/nowgit.zip
+        unzip -o -d ~/nowgit ~/nowgit.zip
         
 #       uses: pixta-dev/repository-mirroring-action@v1
 #       with:
