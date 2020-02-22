@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: ssh-keyscan
-      run: ssh-keyscan -t rsa github.com 2>&1 >> ~/.ssh/known_hosts
+      run: ssh-keyscan -t rsa github.com 2>&1 >> /github/.ssh/known_hosts
     - name: Mirroring Repository
       uses: pixta-dev/repository-mirroring-action@v1
       with:
