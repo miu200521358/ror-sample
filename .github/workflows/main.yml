@@ -36,8 +36,8 @@ jobs:
         git archive --format=zip HEAD > ~/nowgit.zip
         # ファイル存在確認
         ls -l ~/nowgit.zip
-        # zipを展開する
-        unzip ~/nowgit.zip
+        # zipを展開する(既存上書き)
+        unzip -o ~/nowgit.zip
         
 #       uses: pixta-dev/repository-mirroring-action@v1
 #       with:
