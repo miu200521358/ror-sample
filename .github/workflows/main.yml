@@ -16,42 +16,29 @@ jobs:
     - uses: actions/checkout@v2
     - name: set-ssh
       run: |
-        # SSHディレクトリ作成
-        mkdir ~/.ssh
-        # 権限を設定
-        chmod 700 ~/.ssh
-        # secretに保存されているパスフレーズなしの秘密鍵を出力する
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        # 権限を限定する
-        chmod 600 ~/.ssh/id_rsa
+        mkdir ~/.ssh                                            # SSHディレクトリ作成
+        chmod 700 ~/.ssh                                        # 権限を設定
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa   # secretに保存されているパスフレーズなしの秘密鍵を出力する
+        chmod 600 ~/.ssh/id_rsa                                 # 権限を限定する
     - name: clone
       run: |
-        # ミラー用ディレクトリ作成
-        mkdir ~/mirror
-        # ミラー用ディレクトリに移動
-        cd ~/mirror
-        # ミラー用リポジトリをclone
-        git clone $MIRROR_RIPOSITORY
-        # ファイル存在確認
-        ls -l ./   
+        mkdir ~/mirror                        # ミラー用ディレクトリ作成
+        cd ~/mirror                           # ミラー用ディレクトリに移動
+        git clone $MIRROR_RIPOSITORY          # ミラー用リポジトリをclone
+        ls -l ./                              # ファイル存在確認
     - name: export
       run: |
-        # リポジトリの最新ソースを zip でexportする
-        git archive --format=zip HEAD > ~/original.zip
-        # ファイル存在確認
-        ls -l ~/original.zip
-        # zipを展開する(既存上書き)
-        unzip -o -d ~/original ~/original.zip
+        git archive --format=zip HEAD > ~/original.zip        # リポジトリの最新ソースを zip でexportする
+        ls -l ~/original.zip                                  # ファイル存在確認
+        unzip -o -d ~/original ~/original.zip                 # zipを展開する(既存上書き)
     - name: copy
       run: |
-        # オリジナルをミラーにコピーする
-        cp -r ~/original ~/mirror/$MIRROR_REPOSITORY_NAME
+        cp -r ~/original ~/mirror/$MIRROR_REPOSITORY_NAME     # オリジナルをミラーにコピーする
     - name: diff
       run: |
-        # ミラー用リポジトリに移動
-        cd ~/mirror/$MIRROR_REPOSITORY_NAME
-        # 差分表示
-        git diff
+        cd ~/mirror/$MIRROR_REPOSITORY_NAME                 # ミラー用リポジトリに移動
+        git diff                                            # 差分表示
+
         
         
 #       uses: pixta-dev/repository-mirroring-action@v1
