@@ -16,13 +16,9 @@ jobs:
     - name: Run a multi-line script
       run: |
         echo Add other actions to build,
-        echo test, and deploy your project.
-    - name: Sync branches
-      uses: TreTuna/sync-branches@v1
+            echo test, and deploy your project.
+    - name: Mirroring Repository
+      uses: pixta-dev/repository-mirroring-action@v1
       with:
-        # User token to be associated with this pull request.
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        # Branch from make pull-request from
-        FROM_BRANCH: master
-        # Branch to make the pull-request against
-        TO_BRANCH: readonly
+        # Target url
+        target_repo_url: https://github.com/miu200521358/ror-sample-mirror
