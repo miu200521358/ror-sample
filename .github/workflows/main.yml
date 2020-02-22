@@ -10,12 +10,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-            echo test, and deploy your project.
+    - name: ssh-keyscan
+      run: ssh-keyscan -t rsa github.com 2>&1 >> ~/.ssh/known_hosts
     - name: Mirroring Repository
       uses: pixta-dev/repository-mirroring-action@v1
       with:
