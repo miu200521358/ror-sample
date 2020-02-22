@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v1
     - name: test
       run: ls -la /dev/tty
     - name: Mirroring Repository
@@ -19,4 +19,3 @@ jobs:
         ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
         # Target url
         target_repo_url: git@github.com:miu200521358/ror-sample-mirror.git
-
