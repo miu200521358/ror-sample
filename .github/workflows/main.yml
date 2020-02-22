@@ -10,6 +10,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      name: set-ssh
+      run: |
+        # SSHディレクトリ作成
+        mkdir ~/.ssh
+        # 権限を設定
+        chmod 700 ~/.ssh
+        # secretに保存されているパスフレーズなしの秘密鍵を出力する
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        # 権限を限定する
+        chmod 600 ~/.ssh/id_rsa
     - name: clone
       run: |
         # ミラー用ディレクトリ作成
