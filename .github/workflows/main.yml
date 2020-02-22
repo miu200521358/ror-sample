@@ -7,19 +7,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+      # ミラー先リポジトリ名
+      mirror-repository-name: ror-sample-mirror
+      # ミラー先のリポジトリSSHパス
+      mirror-ripository:  git@github.com:miu200521358/ror-sample-mirror.git
     steps:
     - uses: actions/checkout@v2
-    - name: set-ssh
-      run: |
-        # SSHディレクトリ作成
-        mkdir ~/.ssh
-        # 権限を設定
-        chmod 700 ~/.ssh
-        # secretに保存されているパスフレーズなしの秘密鍵を出力する
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        # 権限を限定する
-        chmod 600 ~/.ssh/id_rsa
     - name: clone
       run: |
         # ミラー用ディレクトリ作成
@@ -27,7 +21,7 @@ jobs:
         # ミラー用ディレクトリに移動
         cd ~/mirror
         # ミラー用リポジトリをclone
-        git clone git@github.com:miu200521358/ror-sample-mirror.git
+        git clone git@github.com:miu200521358/${{ env.mirror-repository }}.git
         # ファイル存在確認
         ls -l ./   
     - name: export
@@ -41,11 +35,11 @@ jobs:
     - name: copy
       run: |
         # オリジナルをミラーにコピーする
-        cp -r ~/original ~/mirror
+        cp -r ~/original ~/mirror/${{ env.mirror-repository-name }}
     - name: diff
       run: |
         # ミラー用リポジトリに移動
-        cd ~/mirror
+        cd ~/mirror/${{ env.mirror-repository-name }}
         # 差分表示
         git diff
         
