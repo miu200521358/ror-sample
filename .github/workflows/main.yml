@@ -43,6 +43,7 @@ jobs:
     - name: copy
       run: |
         cp -r ~/original/ ~/mirror/$MIRROR_REPOSITORY_NAME/     # オリジナルをミラーにコピーする
+        echo | ls -l ~/mirror/
         echo | ls -l ~/mirror/$MIRROR_REPOSITORY_NAME/          # 中身表示
     - name: diff
       run: |
