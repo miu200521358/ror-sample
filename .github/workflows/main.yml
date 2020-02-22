@@ -10,6 +10,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: test
+      run: ls -la /dev/tty
     - name: Mirroring Repository
       uses: pixta-dev/repository-mirroring-action@v1
       with:
