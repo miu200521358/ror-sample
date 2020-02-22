@@ -33,11 +33,22 @@ jobs:
     - name: export
       run: |
         # リポジトリの最新ソースを zip でexportする
-        git archive --format=zip HEAD > ~/nowgit.zip
+        git archive --format=zip HEAD > ~/original.zip
         # ファイル存在確認
-        ls -l ~/nowgit.zip
+        ls -l ~/original.zip
         # zipを展開する(既存上書き)
-        unzip -o -d ~/nowgit ~/nowgit.zip
+        unzip -o -d ~/original ~/original.zip
+    - name: copy
+      run: |
+        # オリジナルをミラーにコピーする
+        cp -r ~/original ~/mirror
+    - name: diff
+      run: |
+        # ミラー用リポジトリに移動
+        cd ~/mirror
+        # 差分表示
+        git diff
+        
         
 #       uses: pixta-dev/repository-mirroring-action@v1
 #       with:
