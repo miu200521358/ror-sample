@@ -10,21 +10,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: ssh-keyscan
-      run: |
-        mkdir /github/home
-        mkdir /github/home/.ssh
-        chmod 700 /github/home/.ssh
-        ssh-keyscan -t rsa github.com 2>&1 >> /github/home/.ssh/known_hosts
-  mirror:
-    runs-on: ubuntu-latest
-
-    steps:
     - name: Mirroring Repository
       uses: pixta-dev/repository-mirroring-action@v1
       with:
         # SSH private key for ssh connection to the target repository
-        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+#        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
         # Target url
         target_repo_url: git@github.com:miu200521358/ror-sample-mirror.git
 
