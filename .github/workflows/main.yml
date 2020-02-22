@@ -45,6 +45,7 @@ jobs:
     - name: diff
       run: |
         cd ~/mirror/$MIRROR_REPOSITORY_NAME                 # ミラー用リポジトリに移動
+        ls -l                                               # 中身表示
         git diff                                            # 差分表示
     - name: push
       run: |
