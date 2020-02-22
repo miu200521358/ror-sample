@@ -33,11 +33,11 @@ jobs:
         mkdir ~/mirror                        # ミラー用ディレクトリ作成
         cd ~/mirror                           # ミラー用ディレクトリに移動
         git clone $MIRROR_RIPOSITORY          # ミラー用リポジトリをclone
-        ls -l ./                              # ファイル存在確認
+        echo | ls -l ./                              # ファイル存在確認
     - name: export
       run: |
         git archive --format=zip HEAD > ~/original.zip        # リポジトリの最新ソースを zip でexportする
-        ls -l ~/original.zip                                  # ファイル存在確認
+        echo | ls -l ~/original.zip                                  # ファイル存在確認
         unzip -o -d ~/original ~/original.zip                 # zipを展開する(既存上書き)
     - name: copy
       run: |
@@ -45,8 +45,8 @@ jobs:
     - name: diff
       run: |
         cd ~/mirror/$MIRROR_REPOSITORY_NAME                 # ミラー用リポジトリに移動
-        ls -l                                               # 中身表示
-        git diff                                            # 差分表示
+        echo | ls -l                                               # 中身表示
+        echo | git diff                                            # 差分表示
     - name: push
       run: |
         git add -A                            # 全部追加
