@@ -10,13 +10,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: test
-      run: ls -la /dev/tty
-    - name: Mirroring Repository
-      uses: pixta-dev/repository-mirroring-action@v1
-      with:
-        # SSH private key for ssh connection to the target repository
-        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-        # Target url
-        target_repo_url: git@github.com:miu200521358/ror-sample-mirror.git
+    - name: export
+      run: |
+        git archive --format=zip HEAD > now.zip
+        ls -l ./now_zip
+        
+#       uses: pixta-dev/repository-mirroring-action@v1
+#       with:
+#         # SSH private key for ssh connection to the target repository
+#         ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+#         # Target url
+#         target_repo_url: git@github.com:miu200521358/ror-sample-mirror.git
 
