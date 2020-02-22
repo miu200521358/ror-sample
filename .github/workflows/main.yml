@@ -12,8 +12,16 @@ jobs:
       MIRROR_REPOSITORY_NAME: ror-sample-mirror
       # ミラー先のリポジトリSSHパス
       MIRROR_RIPOSITORY:  git@github.com:miu200521358/ror-sample-mirror.git
+      # gitアカウント名(git config user.name）
+      GIT_NAME: miu200521358
+      # gitメールアドレス（git config user.email）
+      GIT_MAILADDRESS: garnet200521358@gmail.com
     steps:
     - uses: actions/checkout@v2
+    - name: set-git
+      run: |
+        git config --global user.name $GIT_NAME
+        git config --global user.email $GIT_MAILADDRESS
     - name: set-ssh
       run: |
         mkdir ~/.ssh                                            # SSHディレクトリ作成
