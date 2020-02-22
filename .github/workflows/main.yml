@@ -30,38 +30,28 @@ jobs:
         chmod 600 ~/.ssh/id_rsa                                 # 権限を限定する
     - name: clone
       run: |
-        mkdir ~/mirror                        # ミラー用ディレクトリ作成
-        cd ~/mirror                           # ミラー用ディレクトリに移動
-        git clone $MIRROR_RIPOSITORY          # ミラー用リポジトリをclone
-        echo | ls -l ./                              # ファイル存在確認
+        mkdir ~/mirror                                          # ミラー用ディレクトリ作成
+        cd ~/mirror                                             # ミラー用ディレクトリに移動
+        git clone $MIRROR_RIPOSITORY                            # ミラー用リポジトリをclone
+        echo | ls -l ./                                         # ファイル存在確認
     - name: export
       run: |
-        git archive --format=zip HEAD > ~/original.zip        # リポジトリの最新ソースを zip でexportする
-        echo | ls -l ~/original.zip                                  # ファイル存在確認
+        git archive --format=zip HEAD > ~/original.zip          # リポジトリの最新ソースを zip でexportする
+        echo | ls -l ~/original.zip                             # ファイル存在確認
         mkdir ~/original                                        # 保持用ディレクトリ作成
-        unzip -o -d ~/$MIRROR_REPOSITORY_NAME ~/original.zip                 # zipを展開する(既存上書き)
-        echo | ls -l ~/$MIRROR_REPOSITORY_NAME                                          # 中身表示
+        unzip -o -d ~/$MIRROR_REPOSITORY_NAME ~/original.zip    # zipを展開する(既存上書き)
+        echo | ls -l ~/$MIRROR_REPOSITORY_NAME                  # 中身表示
     - name: copy
       run: |
-        cp -r ~/$MIRROR_REPOSITORY_NAME ~/mirror     # オリジナルをミラーにコピーする
-        echo | ls -l ~/mirror/
-        echo | ls -l ~/mirror/$MIRROR_REPOSITORY_NAME          # 中身表示
-    - name: diff
-      run: |
-        cd ~/mirror/$MIRROR_REPOSITORY_NAME                 # ミラー用リポジトリに移動
-        echo | ls -l                                               # 中身表示
-        git diff                                            # 差分表示
+        cp -r ~/$MIRROR_REPOSITORY_NAME ~/mirror                # オリジナルをミラーにコピーする
+        echo | ls -l ~/mirror/$MIRROR_REPOSITORY_NAME           # 中身表示
     - name: push
       run: |
-        git add -A                            # 全部追加
-        git commit -m "mirror from original"  # commit
-        git push origin master                # push
+        cd ~/mirror/$MIRROR_REPOSITORY_NAME                     # ミラー用リポジトリに移動
+        echo | ls -l                                            # 中身表示
+        git diff                                                # 差分表示
+        git add -A                                              # 全部追加
+        git commit -m "mirror from original"                    # commit
+        git push origin master                                  # push
         
-        
-#       uses: pixta-dev/repository-mirroring-action@v1
-#       with:
-#         # SSH private key for ssh connection to the target repository
-#         ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-#         # Target url
-#         target_repo_url: git@github.com:miu200521358/ror-sample-mirror.git
-
+      
