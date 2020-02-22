@@ -41,7 +41,7 @@ jobs:
         unzip -o -d ~/original ~/original.zip                 # zipを展開する(既存上書き)
     - name: copy
       run: |
-        cp -r ~/original ~/mirror/$MIRROR_REPOSITORY_NAME     # オリジナルをミラーにコピーする
+        cp -r ~/original/ ~/mirror/$MIRROR_REPOSITORY_NAME/     # オリジナルをミラーにコピーする
     - name: diff
       run: |
         cd ~/mirror/$MIRROR_REPOSITORY_NAME                 # ミラー用リポジトリに移動
