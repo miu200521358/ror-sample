@@ -10,10 +10,24 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: clone
+      run: |
+        # ミラー用ディレクトリ作成
+        mkdir ~/mirror
+        # ミラー用ディレクトリに移動
+        cd ~/mirror
+        # ミラー用リポジトリをclone
+        git clone git@github.com:miu200521358/ror-sample-mirror.git
+        # ファイル存在確認
+        ls -l ./   
     - name: export
       run: |
+        # リポジトリの最新ソースを zip でexportする
         git archive --format=zip HEAD > ~/nowgit.zip
+        # ファイル存在確認
         ls -l ~/nowgit.zip
+        # zipを展開する
+        unzip ~/nowgit.zip
         
 #       uses: pixta-dev/repository-mirroring-action@v1
 #       with:
