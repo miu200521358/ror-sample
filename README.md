@@ -25,3 +25,4 @@ Things you may want to cover:
 
 TEST1
 TEST2
+TEST3
