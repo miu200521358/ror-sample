@@ -36,9 +36,13 @@ jobs:
         cp -r ~/original ~/mirror/$MIRROR_REPOSITORY_NAME     # オリジナルをミラーにコピーする
     - name: diff
       run: |
-        cd ~/mirror/$MIRROR_REPOSITORY_NAME
-        git diff
-
+        cd ~/mirror/$MIRROR_REPOSITORY_NAME                 # ミラー用リポジトリに移動
+        git diff                                            # 差分表示
+    - name: push
+      run: |
+        git add -A                            # 全部追加
+        git commit -m "mirror from original"  # commit
+        git push origin master                # push
         
         
 #       uses: pixta-dev/repository-mirroring-action@v1
