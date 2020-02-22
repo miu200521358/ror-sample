@@ -43,12 +43,12 @@ jobs:
     - name: copy
       run: |
         cp -r ~/original/ ~/mirror/$MIRROR_REPOSITORY_NAME/     # オリジナルをミラーにコピーする
-        echo | ls -l                                               # 中身表示
+        echo | ls -l ~/mirror/$MIRROR_REPOSITORY_NAME/          # 中身表示
     - name: diff
       run: |
         cd ~/mirror/$MIRROR_REPOSITORY_NAME                 # ミラー用リポジトリに移動
         echo | ls -l                                               # 中身表示
-        echo | git diff                                            # 差分表示
+        git diff                                            # 差分表示
     - name: push
       run: |
         git add -A                            # 全部追加
