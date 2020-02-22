@@ -42,7 +42,7 @@ jobs:
         echo | ls -l ~/original                                          # 中身表示
     - name: copy
       run: |
-        cp --r ~/original/ ~/mirror/$MIRROR_REPOSITORY_NAME/     # オリジナルをミラーにコピーする
+        cp -r ~/original/ ~/mirror/$MIRROR_REPOSITORY_NAME/     # オリジナルをミラーにコピーする
         echo | ls -l                                               # 中身表示
     - name: diff
       run: |
