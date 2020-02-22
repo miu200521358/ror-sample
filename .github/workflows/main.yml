@@ -39,13 +39,13 @@ jobs:
         git archive --format=zip HEAD > ~/original.zip        # リポジトリの最新ソースを zip でexportする
         echo | ls -l ~/original.zip                                  # ファイル存在確認
         mkdir ~/original                                        # 保持用ディレクトリ作成
-        unzip -o -d ~/original/$MIRROR_REPOSITORY_NAME ~/original.zip                 # zipを展開する(既存上書き)
-        echo | ls -l ~/original                                          # 中身表示
+        unzip -o -d ~/$MIRROR_REPOSITORY_NAME ~/original.zip                 # zipを展開する(既存上書き)
+        echo | ls -l ~/$MIRROR_REPOSITORY_NAME                                          # 中身表示
     - name: copy
       run: |
-        cp -r ~/original ~/mirror     # オリジナルをミラーにコピーする
+        cp -r ~/$MIRROR_REPOSITORY_NAME ~/mirror     # オリジナルをミラーにコピーする
         echo | ls -l ~/mirror/
-        echo | ls -l ~/mirror/$MIRROR_REPOSITORY_NAME/          # 中身表示
+        echo | ls -l ~/mirror/$MIRROR_REPOSITORY_NAME          # 中身表示
     - name: diff
       run: |
         cd ~/mirror/$MIRROR_REPOSITORY_NAME                 # ミラー用リポジトリに移動
