@@ -31,7 +31,7 @@ jobs:
         # ミラー用ディレクトリに移動
         cd ~/mirror
         # ミラー用リポジトリをclone
-        git clone git@github.com:miu200521358/${{ env.mirror-repository }}.git
+        git clone ${{ env.mirror-repository }}
         # ファイル存在確認
         ls -l ./   
     - name: export
