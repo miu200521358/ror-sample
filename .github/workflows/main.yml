@@ -3,10 +3,10 @@ name: Mirror Repository
 on:
   push:
     branches:
-      - master
+      - master  # branch:master に対する push が行われた時にのみ処理を実行する
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # 最新のubuntuイメージを使用する
     env:
       # ミラー先リポジトリ名
       MIRROR_REPOSITORY_NAME: ror-sample-mirror
